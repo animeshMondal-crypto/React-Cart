@@ -3,7 +3,14 @@ import { formatCurrency } from "../utils/formatCurrency";
 import { useCartContext } from "../context/CartContext";
 import { ProductType } from "../context/ProductsContext";
 
-const Product = ({ id, title, images, price, rating }: ProductType) => {
+const Product = ({
+  id,
+  title,
+  images,
+  price,
+  rating,
+  category,
+}: ProductType) => {
   const {
     getItemQuantity,
     increaseCartQuantity,
@@ -32,7 +39,7 @@ const Product = ({ id, title, images, price, rating }: ProductType) => {
           {quantity === 0 ? (
             <Button
               variant="secondary"
-              onClick={() => increaseCartQuantity(id)}
+              onClick={() => increaseCartQuantity(id, category)}
             >
               Add To Cart
             </Button>
@@ -57,7 +64,7 @@ const Product = ({ id, title, images, price, rating }: ProductType) => {
                   </Button>
                   <Button
                     variant="secondary"
-                    onClick={() => increaseCartQuantity(id)}
+                    onClick={() => increaseCartQuantity(id, category)}
                   >
                     +
                   </Button>

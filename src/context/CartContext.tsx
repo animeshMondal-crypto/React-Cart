@@ -5,7 +5,7 @@ type CartContextType = {
   openCart: () => void;
   closeCart: () => void;
   getItemQuantity: (id: number) => number;
-  increaseCartQuantity: (id: number) => void;
+  increaseCartQuantity: (id: number, category: string) => void;
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
@@ -15,6 +15,7 @@ type CartContextType = {
 export type CartItemtype = {
   id: number;
   quantity: number;
+  category: string;
 };
 
 const CartContext = createContext({} as CartContextType);
@@ -40,10 +41,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
 
-  function increaseCartQuantity(id: number) {
+  function increaseCartQuantity(id: number, category: string) {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, quantity: 1 }];
+        return [...currItems, { id, category, quantity: 1 }];
       } else {
         return currItems.map((item) => {
           if (item.id === id) {

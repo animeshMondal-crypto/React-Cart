@@ -3,6 +3,7 @@ import Products from "./components/Products";
 import ProductsContextProvider from "./context/ProductsContext";
 import NavigationBar from "./components/NavigationBar";
 import { CartProvider } from "./context/CartContext";
+import Filters from "./components/Filters";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <CartProvider>
         <NavigationBar />
         <Container className="mb-5">
+          <Filters />
           <Products />
         </Container>
       </CartProvider>

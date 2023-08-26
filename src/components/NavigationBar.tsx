@@ -1,9 +1,11 @@
 import { Navbar, Container, Button, Form } from "react-bootstrap";
 import BrandIcon from "../assets/online-shop.png";
 import { useCartContext } from "../context/CartContext";
+import { useProductContext } from "../context/ProductsContext";
 
 const NavigationBar = () => {
   const { cartQuantity, openCart } = useCartContext();
+  const { setSearchQuery } = useProductContext();
   return (
     <Navbar className="bg-white shadow-sm mb-4" sticky="top">
       <Container>
@@ -14,9 +16,13 @@ const NavigationBar = () => {
             alt="Brand Image"
           />
         </Navbar.Brand>
-        <Form className="d-flex">
-          <Form.Control type="search" placeholder="Search" className="me-2" />
-          <Button variant="outline-secondary">search</Button>
+        <Form>
+          <Form.Control
+            onChange={(e) => setSearchQuery(e.target.value)}
+            type="search"
+            placeholder="Search"
+            className="me-2"
+          />
         </Form>
         <Button
           style={{ width: "3.5rem", height: "3.5rem", position: "relative" }}
